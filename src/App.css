@@ -27,18 +27,34 @@
 .App-link {
   color: #61dafb;
 }
-.resume canvas {
-  display: block;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 100%;
-  height: auto;
+.resume-section {
+  background-color: #0d0d1f;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.resume {
-  margin-bottom: 0;
-  padding-bottom: 0;
+.pdf-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+
+.resume canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+body {
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
 
 
 @keyframes App-logo-spin {
