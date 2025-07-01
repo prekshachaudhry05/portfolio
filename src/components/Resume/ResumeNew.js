@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
+import "./resume.css";
 
 // Correct pathing for GitHub Pages
 const pdfUrl = `${process.env.PUBLIC_URL}/preksha-chaudhary-resume.pdf`;
@@ -42,19 +43,22 @@ function ResumeNew() {
 
         {/* PDF Display */}
         <Row className="resume d-flex justify-content-center" style={{ marginBottom: "0px" }}>
-          <Document
-            file={pdfUrl}
-            onLoadSuccess={onDocumentLoadSuccess}
-            onLoadError={(error) => console.error("PDF load error:", error)}
-          >
-            <Page
-              pageNumber={1}
-              scale={width > 786 ? 1.5 : 0.6}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-            />
-          </Document>
+          <div className="pdf-container">
+            <Document
+              file={pdfUrl}
+              onLoadSuccess={onDocumentLoadSuccess}
+              onLoadError={(error) => console.error("PDF load error:", error)}
+            >
+              <Page
+                pageNumber={1}
+                scale={width > 786 ? 1.5 : 0.6}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+              />
+            </Document>
+          </div>
         </Row>
+
 
         {/* Bottom Download Button */}
         <Row style={{ justifyContent: "center", marginTop: "20px", marginBottom: "0px" }}>
