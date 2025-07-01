@@ -4,13 +4,14 @@ import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
-import "../App.css";
 
+// Correct pathing for GitHub Pages
 const pdfUrl = `${process.env.PUBLIC_URL}/preksha-chaudhary-resume.pdf`;
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
 function ResumeNew() {
   const [width, setWidth] = useState(window.innerWidth);
+  const [numPages, setNumPages] = useState(null);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -18,38 +19,51 @@ function ResumeNew() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
   return (
-    <div style={{ overflow: "hidden" }}>
-      <Container fluid className="resume-section p-0 m-0" style={{ overflow: "hidden" }}>
+    <div>
+      <Container fluid className="resume-section" style={{ paddingBottom: "0px" }}>
         <Particle />
 
-        {/* Top Button */}
-        <Row className="justify-content-center mb-3">
-          <Button variant="primary" href={pdfUrl} target="_blank">
+        {/* Top Download Button */}
+        <Row style={{ justifyContent: "center", marginBottom: "20px" }}>
+          <Button
+            variant="primary"
+            href={pdfUrl}
+            target="_blank"
+            style={{ maxWidth: "250px" }}
+          >
             <AiOutlineDownload /> &nbsp;Download Resume
           </Button>
         </Row>
 
-        {/* PDF Viewer */}
-        <Row className="justify-content-center m-0">
-          <div className="pdf-wrapper">
-            <Document
-              file={pdfUrl}
-              onLoadError={(error) => console.error("PDF load error:", error)}
-            >
-              <Page
-                pageNumber={1}
-                scale={width > 786 ? 1.4 : 0.6}
-                renderAnnotationLayer={false}
-                renderTextLayer={false}
-              />
-            </Document>
-          </div>
+        {/* PDF Display */}
+        <Row className="resume d-flex justify-content-center" style={{ marginBottom: "0px" }}>
+          <Document
+            file={pdfUrl}
+            onLoadSuccess={onDocumentLoadSuccess}
+            onLoadError={(error) => console.error("PDF load error:", error)}
+          >
+            <Page
+              pageNumber={1}
+              scale={width > 786 ? 1.5 : 0.6}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+            />
+          </Document>
         </Row>
 
-        {/* Bottom Button */}
-        <Row className="justify-content-center mt-3">
-          <Button variant="primary" href={pdfUrl} target="_blank">
+        {/* Bottom Download Button */}
+        <Row style={{ justifyContent: "center", marginTop: "20px", marginBottom: "0px" }}>
+          <Button
+            variant="primary"
+            href={pdfUrl}
+            target="_blank"
+            style={{ maxWidth: "250px" }}
+          >
             <AiOutlineDownload /> &nbsp;Download Resume
           </Button>
         </Row>
