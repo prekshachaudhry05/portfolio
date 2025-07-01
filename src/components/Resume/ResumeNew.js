@@ -29,17 +29,7 @@ function ResumeNew() {
       <Container fluid className="resume-section" style={{ paddingBottom: "0px" }}>
         <Particle />
 
-        {/* Top Download Button */}
-        <Row className="resume-button-row">
-          <Button
-            variant="primary"
-            href={pdfUrl}
-            target="_blank"
-            style={{ maxWidth: "250px" }}
-          >
-            <AiOutlineDownload /> &nbsp;Download Resume
-          </Button>
-        </Row>
+        
 
         {/* PDF Display */}
         <Row className="resume d-flex justify-content-center" style={{ marginBottom: "0px" }}>
