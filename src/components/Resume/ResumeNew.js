@@ -8,7 +8,7 @@ import "./resume.css";
 
 // Correct pathing for GitHub Pages
 const pdfUrl = `${process.env.PUBLIC_URL}/preksha-chaudhary-resume.pdf`;
-pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.js`;
 
 function ResumeNew() {
   const [width, setWidth] = useState(window.innerWidth);
