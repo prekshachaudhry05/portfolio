@@ -6,7 +6,7 @@ import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
-const pdfUrl = "/preksha-chaudhary-resume.pdf";
+const pdfUrl = process.env.PUBLIC_URL + "/preksha-chaudhary-resume.pdf";
 
 function ResumeNew() {
   const [width, setWidth] = useState(window.innerWidth);
