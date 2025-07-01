@@ -5,8 +5,9 @@ import Particle from "../Particle";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
 
-const pdfUrl = process.env.PUBLIC_URL + "/preksha-chaudhary-resume.pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = process.env.PUBLIC_URL + "/pdf.worker.min.js";
+// Correct pathing for GitHub Pages
+const pdfUrl = `${process.env.PUBLIC_URL}/preksha-chaudhary-resume.pdf`;
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
 function ResumeNew() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -24,10 +25,11 @@ function ResumeNew() {
 
   return (
     <div>
-      <Container fluid className="resume-section">
+      <Container fluid className="resume-section" style={{ paddingBottom: "0px" }}>
         <Particle />
 
-        <Row style={{ justifyContent: "center", position: "relative" }}>
+        {/* Top Download Button */}
+        <Row style={{ justifyContent: "center", marginBottom: "20px" }}>
           <Button
             variant="primary"
             href={pdfUrl}
@@ -38,17 +40,24 @@ function ResumeNew() {
           </Button>
         </Row>
 
-        <Row className="resume d-flex justify-content-center">
+        {/* PDF Display */}
+        <Row className="resume d-flex justify-content-center" style={{ marginBottom: "0px" }}>
           <Document
             file={pdfUrl}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={(error) => console.error("PDF load error:", error)}
           >
-            <Page pageNumber={1} scale={width > 786 ? 1.5 : 0.6} />
+            <Page
+              pageNumber={1}
+              scale={width > 786 ? 1.5 : 0.6}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+            />
           </Document>
         </Row>
 
-        <Row style={{ justifyContent: "center", position: "relative" }}>
+        {/* Bottom Download Button */}
+        <Row style={{ justifyContent: "center", marginTop: "20px", marginBottom: "0px" }}>
           <Button
             variant="primary"
             href={pdfUrl}

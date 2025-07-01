@@ -27,6 +27,19 @@
 .App-link {
   color: #61dafb;
 }
+.resume canvas {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.resume {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 
 @keyframes App-logo-spin {
   from {
