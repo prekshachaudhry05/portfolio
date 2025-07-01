@@ -30,7 +30,7 @@ function ResumeNew() {
         <Particle />
 
         {/* Top Download Button */}
-        <Row style={{ justifyContent: "center", marginBottom: "20px" }}>
+        <Row className="resume-button-row">
           <Button
             variant="primary"
             href={pdfUrl}
